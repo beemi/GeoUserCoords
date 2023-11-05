@@ -133,7 +133,7 @@ router.get('/getLatLong/:postcode', asyncHandler(async (req, res) => {
  */
 router.get('/getAllPostcodes', asyncHandler(async (req, res) => {
     try {
-        const cursor = db.collection('postcodes').find();
+        const cursor = db.collection('postcodes').find({}, { projection: { _id: 0, __v: 0 } });
         const result = await cursor.toArray();
         logger.debug(`Data retrieved from database: ${JSON.stringify(result)}`);
         if (result.length > 0) {
