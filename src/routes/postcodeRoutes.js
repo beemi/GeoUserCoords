@@ -1,6 +1,5 @@
 const db = require('../config/db');
 const express = require('express');
-const bodyParser = require('body-parser');
 const router = express.Router();
 const getPostcodeData = require('../services/postcodeio');
 const logger = require('../utils/logger');

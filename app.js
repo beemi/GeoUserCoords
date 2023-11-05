@@ -1,5 +1,7 @@
 require('dotenv').config();
+
 const express = require('express')
+const bodyparser = require('body-parser');
 const expressJSDocSwagger = require('express-jsdoc-swagger');
 const port = process.env.PORT || 3000;
 const postcodeRoutes = require('./src/routes/postcodeRoutes');
@@ -10,7 +12,7 @@ const swaggerOptions = require('./src/config/swaggerOptions');
 const app = express()
 
 app.use(morgan('default'));
-app.use(express.json());
+app.use(bodyparser.json());
 app.use('/api/v1/postcode', postcodeRoutes);
 
 expressJSDocSwagger(app)(swaggerOptions);
