@@ -1,8 +1,10 @@
 const axios = require('axios');
 
+const {postcodeIoUrl} = require('../config/config-utils');
+
 const getPostcodeData = async (postcode) => {
     try {
-        const url = `https://postcodes.io/postcodes/${encodeURIComponent(postcode)}`;
+        const url = `${postcodeIoUrl}/postcodes/${encodeURIComponent(postcode)}`;
         const response = await axios.get(url);
         return response.data;
     } catch (error) {
