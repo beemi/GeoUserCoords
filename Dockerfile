@@ -1,0 +1,21 @@
+FROM node:16-slim
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install --only=production
+
+COPY . .
+
+ENV MONGO_HOST=localhost
+ENV MONGO_PORT=27017
+ENV MONGO_INITDB_ROOT_USERNAME=admin
+ENV MONGO_INITDB_ROOT_PASSWORD=123456
+ENV MONGO_AUTH_SOURCE=admin
+ENV MONGO_DB=user-postcode-latlong
+ARG MONGODB_URI=mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@$MONGO_HOST:$MONGO_PORT/$MONGO_DB?authSource=$MONGO_AUTH_SOURCE
+
+EXPOSE 3000
+
+CMD [ "node", "app.js" ]

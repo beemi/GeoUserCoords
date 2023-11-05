@@ -11,8 +11,16 @@ npm install express axios morgan winston
 ```
 
 ### Development
+
+To run the app in development mode, run the following commandm which will start the mongodb instance and the app.
+
 ```bash
 docker-compose up -d
+```
+Build the Docker image for local development
+    
+```bash
+docker build -t user-geo-coordinates-api .
 ```
 
 ### Project structure
