@@ -1,10 +1,10 @@
+require('dotenv').config();
 const express = require('express')
 const app = express()
-const port = 3000
-const  getPostcodeData  = require('./external/postcodeio');
-const postcodeRoutes = require('./routers/postcodeRoutes');
+const port = process.env.PORT || 3000;
+const postcodeRoutes = require('./src/routes/postcodeRoutes');
 const morgan = require('morgan');
-const logger = require('./logger/logger');
+const logger = require('./src/utils/logger');
 
 app.use(morgan('tiny'));
 app.use(express.json());

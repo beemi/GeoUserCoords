@@ -9,3 +9,8 @@ This is a simple API that returns the geo coordinates of a user based on the pos
 ```bash
 npm install express axios morgan winston
 ```
+
+### Development
+```bash
+docker-compose up -d
+```
