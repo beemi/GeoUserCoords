@@ -67,3 +67,10 @@ docker run -p 3000:3000 -d \
 The API documentation is available at [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
 
 ![API Documentation](docs/img_1.png)
+
+### 📝 Deployment
+
+Docker image is deployed to kubernetes cluster using github actions and helm.
+
+
+
