@@ -119,14 +119,12 @@ router.get('/getLatLong/:postcode', asyncHandler(async (req, res) => {
  *   "status": "success",
  *   "data": [
  *     {
- *       "_id": "6547d161e96d1792f30e863a",
  *       "postcode": "IG12FJ",
  *       "data": {
  *         "latitude": 51.557962,
  *         "longitude": 0.067261
  *       },
- *       "date": "2023-11-05T17:31:13.475Z",
- *       "__v": 0
+ *       "date": "2023-11-05T17:31:13.475Z"
  *     }
  *   ]
  * }
