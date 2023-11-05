@@ -48,3 +48,16 @@ your-app/
 ├── package.json               # Project manifest.
 └── ...
 ```
+### Build Docker image
+
+Using github actions, the docker image is built and pushed to docker hub.
+
+```bash
+docker run -p 3000:3000 -d \
+  -e MONGO_INITDB_ROOT_USERNAME=newadmin \
+  -e MONGO_INITDB_ROOT_PASSWORD=newpassword \
+  -e MONGO_HOST=host.docker.internal \
+  -e MONGO_PORT=27017 \
+  -e MONGO_DB=newdatabase \
+  your-app-name
+```
