@@ -7,7 +7,7 @@ This is a simple API that returns the geo coordinates of a user based on the pos
 ## Installation
 
 ```bash
-npm install express axios morgan winston
+npm install express axios body-parser cors express helmet morgan
 ```
 
 ### Development
@@ -61,3 +61,9 @@ docker run -p 3000:3000 -d \
   -e MONGO_DB=newdatabase \
   your-app-name
 ```
+
+### 🎨 API Documentation 
+
+The API documentation is available at [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+
+![API Documentation](docs/img_1.png)

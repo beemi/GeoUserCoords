@@ -1,5 +1,7 @@
 const db = require('../config/db');
 const express = require('express');
+const expressJSDocSwagger = require('express-jsdoc-swagger');
+const bodyParser = require('body-parser');
 const router = express.Router();
 const getPostcodeData = require('../services/postcodeio');
 const logger = require('../utils/logger');
@@ -7,7 +9,19 @@ const Postcode = require('../models/Postcode');
 
 const asyncHandler = require('express-async-handler');
 
-// POST /postcode/getLatLong/:postcode
+/**
+ * POST /api/v1/postcode/getLatLong/{postcode}
+ * @summary This endpoint retrieves the latitude and longitude for a given postcode
+ * @param {string} postcode.path - The postcode to retrieve the latitude and longitude for
+ * @return {object} 200 - success response - application/json
+ * @example response - 200 - success response example
+ * {
+ *    "status": "success",
+ *    "latitude": 51.557962,
+ *    "longitude": 0.067261,
+ *    "created": "2023-11-05T17:31:13.475Z"
+ *    }
+ */
 router.post('/getLatLong/:postcode', asyncHandler(async (req, res) => {
     const postcode = req.params.postcode;
     logger.info(`Request received for postcode: ${postcode}`);
@@ -53,7 +67,19 @@ router.post('/getLatLong/:postcode', asyncHandler(async (req, res) => {
     }
 }));
 
-// GET /postcode/getLatLong/:postcode
+/**
+ * GET /api/v1/postcode/getLatLong/{postcode}
+ * @summary This endpoint retrieves the latitude and longitude for a given postcode
+ * @param {string} postcode.path - The postcode to retrieve the latitude and longitude for
+ * @return {object} 200 - success response - application/json
+ * @example response - 200 - success response example
+ * {
+ *   "status": "success",
+ *   "latitude": 51.557962,
+ *   "longitude": 0.067261,
+ *   "created": "2023-11-05T17:31:13.475Z"
+ *   }
+ */
 router.get('/getLatLong/:postcode', asyncHandler(async (req, res) => {
     const postcode = req.params.postcode;
     logger.info(`Request received for postcode: ${postcode}`);
@@ -82,7 +108,27 @@ router.get('/getLatLong/:postcode', asyncHandler(async (req, res) => {
     }
 }));
 
-//GET /postcode/getAllPostcodes
+/**
+ * GET /api/v1/postcode/getAllPostcodes
+ * @summary This endpoint retrieves all postcodes from the database
+ * @return {object} 200 - success response - application/json
+ * @example response - 200 - success response example
+ * {
+ *   "status": "success",
+ *   "data": [
+ *     {
+ *       "_id": "6547d161e96d1792f30e863a",
+ *       "postcode": "IG12FJ",
+ *       "data": {
+ *         "latitude": 51.557962,
+ *         "longitude": 0.067261
+ *       },
+ *       "date": "2023-11-05T17:31:13.475Z",
+ *       "__v": 0
+ *     }
+ *   ]
+ * }
+ */
 router.get('/getAllPostcodes', asyncHandler(async (req, res) => {
     try {
         const cursor = db.collection('postcodes').find();
@@ -106,7 +152,17 @@ router.get('/getAllPostcodes', asyncHandler(async (req, res) => {
     }
 }));
 
-// DELETE /postcode/delete/:postcode
+/**
+ * DELETE /api/v1/postcode/delete/{postcode}
+ * @summary This endpoint deletes a postcode from the database
+ * @param {string} postcode.path - The postcode to delete from the database
+ * @return {object} 200 - success response - application/json
+ * @example response - 200 - success response example
+ * {
+ *    "status": "success",
+ *    "message": "Postcode RM176EY deleted"
+ *    }
+ */
 router.delete('/delete/:postcode', asyncHandler(async (req, res) => {
     const postcode = req.params.postcode;
     try {
