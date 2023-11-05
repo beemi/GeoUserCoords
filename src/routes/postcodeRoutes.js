@@ -11,7 +11,7 @@ const asyncHandler = require('express-async-handler');
  * POST /api/v1/postcode/getLatLong/{postcode}
  * @tags Geo Location
  * @summary This endpoint retrieves the latitude and longitude for a given postcode
- * @param {string} postcode.path - The postcode to retrieve the latitude and longitude for
+ * @param {string} postcode.path.required - The postcode to retrieve the latitude and longitude for
  * @return {object} 200 - success response - application/json
  * @example response - 200 - success response example
  * {
@@ -70,7 +70,7 @@ router.post('/getLatLong/:postcode', asyncHandler(async (req, res) => {
  * GET /api/v1/postcode/getLatLong/{postcode}
  * @tags Geo Location
  * @summary This endpoint retrieves the latitude and longitude for a given postcode
- * @param {string} postcode.path - The postcode to retrieve the latitude and longitude for
+ * @param {string} postcode.path.required - The postcode to retrieve the latitude and longitude for
  * @return {object} 200 - success response - application/json
  * @example response - 200 - success response example
  * {
@@ -155,7 +155,7 @@ router.get('/getAllPostcodes', asyncHandler(async (req, res) => {
  * DELETE /api/v1/postcode/delete/{postcode}
  * @tags Geo Location
  * @summary This endpoint deletes a postcode from the database
- * @param {string} postcode.path - The postcode to delete from the database
+ * @param {string} postcode.path.required - The postcode to delete from the database
  * @return {object} 200 - success response - application/json
  * @example response - 200 - success response example
  * {
