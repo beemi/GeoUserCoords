@@ -1,0 +1,11 @@
+{
+  "watch": ["*.js"],
+  "ignore": ["node_modules/", "test/"],
+  "execMap": {
+    "js": "node --harmony"
+  },
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js,json"
+}
