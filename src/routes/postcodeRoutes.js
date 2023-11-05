@@ -82,4 +82,55 @@ router.get('/getLatLong/:postcode', asyncHandler(async (req, res) => {
     }
 }));
 
+//GET /postcode/getAllPostcodes
+router.get('/getAllPostcodes', asyncHandler(async (req, res) => {
+    try {
+        const cursor = db.collection('postcodes').find();
+        const result = await cursor.toArray();
+        logger.debug(`Data retrieved from database: ${JSON.stringify(result)}`);
+        if (result.length > 0) {
+            res.status(200).json({
+                status: 'success',
+                data: result
+            });
+        } else {
+            // send a 404 with a message as the postcode is not in the database
+            res.status(404).json({
+                status: 'error',
+                message: 'No postcodes found in database',
+            });
+        }
+    } catch (error) {
+        logger.error(`Error getting postcode data: ${error}`);
+        throw error;
+    }
+}));
+
+// DELETE /postcode/delete/:postcode
+router.delete('/delete/:postcode', asyncHandler(async (req, res) => {
+    const postcode = req.params.postcode;
+    try {
+        // check if the zip code is in the database first
+        const cursor = db.collection('postcodes').find({postcode: postcode});
+        const result = await cursor.toArray();
+        logger.debug(`Data retrieved from database: ${JSON.stringify(result)}`);
+        if (result.length > 0) {
+            await db.collection('postcodes').deleteOne({postcode: postcode});
+            res.status(200).json({
+                status: 'success',
+                message: `Postcode ${postcode} deleted`,
+            });
+        } else {
+            // send a 404 with a message as the zip code is not in the database
+            res.status(404).json({
+                status: 'error',
+                message: 'Postcode not found in database',
+            });
+        }
+    } catch (error) {
+        logger.error(`Error getting postcode data for ${postcode}: ${error}`);
+        throw error;
+    }
+}));
+
 module.exports = router;
